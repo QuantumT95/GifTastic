@@ -11,7 +11,7 @@ console.log(topics);
       m.addClass("topics");
       m.attr("data-name", topics[i]);
       m.text(topics[i]);
-      $("#superheroes-view").append(m);
+      $("#superhero-view").append(m);
     }
   }
 
