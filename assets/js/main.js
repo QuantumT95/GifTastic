@@ -1,10 +1,44 @@
-$("button").on("click", function() {
+var topics = ["Spider Man", "The Falcon", "Deadpool", "Captain Marvel", "Black Panther", "Ant-Man", "Doctor Strange"];
+
+console.log(topics);
+
+// Function for displaying movie data
+  function renderButtons() {
+    // YOUR CODE GOES HERE
+    $("#superhero-view").empty();
+    for (var i=0; i < topics.length; i++) {
+      var m = $("<button>");
+      m.addClass("topics");
+      m.attr("data-name", topics[i]);
+      m.text(topics[i]);
+      $("#superheroes-view").append(m);
+    }
+  }
+
+// This function handles events where the add movie button is clicked
+  $("#find-gif").on("click", function() {
+    // YOUR CODE GOES HERE
+    event.preventDefault();
+    var superhero = $("#gif-input").val();
+    topics.push(superhero);
+    console.log(topics);
+    renderButtons();
+  });  
+
+$("#find-gif").on("click", function() {
+
+      // Preventing the submit button from trying to submit the form
+      // We're optionally using a form so the user may hit Enter to search instead of clicking the button
+      event.preventDefault();
 
       $("#gifs-appear-here").empty();
       
-      var person = $(this).attr("data-person");
-      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        person + "&api_key=dc6zaTOxFJmzC&limit=10";
+      // Here we grab the text from the input box
+      var gif = $("#gif-input").val();
+
+      
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        gif + "&api_key=dc6zaTOxFJmzC&limit=10";
 
       $.ajax({
           url: queryURL,
@@ -30,3 +64,6 @@ $("button").on("click", function() {
           }
         });
     });
+
+
+renderButtons();

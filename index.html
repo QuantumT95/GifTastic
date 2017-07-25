@@ -3,29 +3,40 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="assets/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	<title>GifTastic!</title>
 </head>
 <body>
 	<div class="container">
-		<div class="row"></div>
+		
+			<div id="superhero-view"></div>
+		
 		<div class="row">
-			<div class="col-md-8"></div>
+			<div class="col-md-8">
+				<div id="gifs-appear-here">
+  				</div>
+			</div>
 			<div class="col-md-4">
 				<div class="panel panel-default">
 				<div class="panel-body">
-				<div class="form-group">
-					<label for="Search">Search Term:</label>
-					<input type="Search" class="form-control" id="Search">
-				</div>
-				<button type="button" class="btn btn-primary">Search</button>
+    			<!-- We'll be dumping our JSON contents in here -->
+   				 <div id="gif-view"></div>
+
+    			<!-- This form will be where users input data about the movies -->
+    			<form id="gif-form">
+      				<label for="gif-input">Search for gif</label>
+      				<input type="text" id="gif-input"><br>
+
+      			<!-- This button will trigger our AJAX call -->
+     			<input id="find-gif" type="submit" value="Gif Search">
+    			</form>
 				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="assets/main.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 </html>
