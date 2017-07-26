@@ -1,10 +1,7 @@
 var topics = ["Spider Man", "The Falcon", "Deadpool", "Captain Marvel", "Black Panther", "Ant-Man", "Doctor Strange"];
 
-console.log(topics);
-
-// Function for displaying movie data
+// Function for adding buttons
   function renderButtons() {
-    // YOUR CODE GOES HERE
     $("#superhero-view").empty();
     for (var i=0; i < topics.length; i++) {
       var m = $("<button>");
@@ -17,7 +14,6 @@ console.log(topics);
 
 // This function handles events where the add movie button is clicked
   $("#find-gif").on("click", function() {
-    // YOUR CODE GOES HERE
     event.preventDefault();
     var superhero = $("#gif-input").val();
     topics.push(superhero);
@@ -25,8 +21,8 @@ console.log(topics);
     renderButtons();
   });  
 
-$("#find-gif").on("click", function() {
-
+//emptys the gifs div and gets gifs and displays it onto the page
+function displayGifs() {
       // Preventing the submit button from trying to submit the form
       // We're optionally using a form so the user may hit Enter to search instead of clicking the button
       event.preventDefault();
@@ -34,7 +30,7 @@ $("#find-gif").on("click", function() {
       $("#gifs-appear-here").empty();
       
       // Here we grab the text from the input box
-      var gif = $("#gif-input").val();
+      var gif = $(this).attr("data-name");
 
       
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -63,7 +59,9 @@ $("#find-gif").on("click", function() {
             $("#gifs-appear-here").prepend(gifDiv);
           }
         });
-    });
+}
+
+$(document).on("click", ".topics", displayGifs);
 
 
 renderButtons();
