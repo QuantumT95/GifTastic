@@ -48,18 +48,39 @@ function displayGifs() {
 
             var rating = results[i].rating;
 
-            var p = $("<p>").text("Rating: " + rating);
+            var s = $("<p>").text("Rating: " + rating);
 
-            var personImage = $("<img>");
-            personImage.attr("src", results[i].images.fixed_height.url);
+            var superheroImage = $("<img>");
+  
+            superheroImage.attr("src", results[i].images.fixed_height_still.url);
+            superheroImage.attr("data-still", results[i].images.fixed_height_still.url);
+            superheroImage.attr("data-animate", results[i].images.fixed_height.url);
+            superheroImage.attr("data-state", "still");
+            superheroImage.addClass("gifClick");
 
-            gifDiv.prepend(p);
-            gifDiv.prepend(personImage);
+            gifDiv.prepend(s);
+            gifDiv.prepend(superheroImage);
 
             $("#gifs-appear-here").prepend(gifDiv);
           }
         });
 }
+
+$(document).on("click", ".gifClick", function(){
+  var state = $(this).attr("data-state");
+
+  if(state == "still"){
+    var url = $(this).attr("data-animate");
+    $(this).attr("data-state", 'animate');
+    $(this).attr("src", url);
+  }
+  else{
+    var url = $(this).attr("data-still");
+    $(this).attr("data-state", "still");
+    $(this).attr("src", url);
+  }
+
+})
 
 $(document).on("click", ".topics", displayGifs);
 
